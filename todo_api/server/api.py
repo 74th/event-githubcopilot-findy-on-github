@@ -48,5 +48,29 @@ def done_task(task_id: int):
     return task
 
 
+# タスクのテキストを更新する
+# PUT /api/tasks/<タスクのID>
+@app.route("/api/tasks/<int:task_id>", methods=["PUT"])
+def update_task(task_id: int):
+    data = request.get_json()
+    text = data.get("text")
+    if not text:
+        return {"error": "text is required"}, 400
+    
+    task = op.update_task(task_id, text)
+    return task
+
+
+# タスクを削除する
+# DELETE /api/tasks/<タスクのID>
+@app.route("/api/tasks/<int:task_id>", methods=["DELETE"])
+def delete_task(task_id: int):
+    success = op.delete_task(task_id)
+    if success:
+        return {"message": "deleted"}, 200
+    else:
+        return {"error": "not found"}, 404
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)
