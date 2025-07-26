@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    // 出力するJavaScriptのバージョン
+    "target": "ES2021",
+
+    // npmモジュールもimport文で読み込めるようにする
+    "esModuleInterop": true,
+
+    // 出力されるJavaScriptのモジュールの参照形式
+    // nodejsの場合はcommonjsを利用する
+    // webpack でコンパイルされるため、ESNextを利用する
+    "module": "ESNext",
+
+    // 全ての箇所で型定義を強制する
+    "strict": true,
+
+    // webpack 経由でTypeScriptコンパイラを利用する場合、
+    // TypeScriptコンパイラが直接ファイル出力しないようにする
+    "noEmit": true,
+
+    "sourceMap": true,
+
+    // 拡張子 tsx で利用するUIフレームワーク
+    "jsx": "react-jsx"
+  },
+  // ソースコードディレクトリ
+  "include": ["src"]
+}
