@@ -22,3 +22,26 @@ class OperationTest(TestCase):
         created_task = op.create_task(new_task)
 
         assert created_task["id"] is not None, "タスクIDが割り振られること"
+
+    def test_update_task(self):
+        db = MemDB()
+        op = OperationInteractor(db)
+        
+        # Update existing task
+        updated_task = op.update_task(0, "updated task")
+        assert updated_task["text"] == "updated task", "タスクのテキストが更新されること"
+        assert updated_task["id"] == 0, "IDは変更されないこと"
+
+    def test_delete_task(self):
+        db = MemDB()
+        op = OperationInteractor(db)
+        
+        initial_tasks = op.show_tasks()
+        initial_count = len(initial_tasks)
+        
+        # Delete existing task
+        result = op.delete_task(0)
+        assert result == True, "削除が成功すること"
+        
+        remaining_tasks = op.show_tasks()
+        assert len(remaining_tasks) == initial_count - 1, "タスクが削除されること"
