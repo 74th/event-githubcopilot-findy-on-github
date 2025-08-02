@@ -39,3 +39,10 @@ class MemDB:
             if task["id"] == id:
                 return copy(task)
         return None
+
+    def delete(self, id: int) -> bool:
+        for i, task in enumerate(self._tasks):
+            if task["id"] == id:
+                del self._tasks[i]
+                return True
+        return False
