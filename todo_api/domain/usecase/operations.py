@@ -23,3 +23,16 @@ class OperationInteractor:
         self._db.update(task)
 
         return task
+
+    def update_task(self, task_id: int, text: str) -> Task:
+        """Update task text"""
+        task = self._db.get(task_id)
+        if task is None:
+            raise Exception("not found")
+        task["text"] = text
+        self._db.update(task)
+        return task
+
+    def delete_task(self, task_id: int) -> bool:
+        """Delete a task completely from database"""
+        return self._db.delete(task_id)
