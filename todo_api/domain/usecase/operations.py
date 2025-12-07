@@ -25,7 +25,7 @@ class OperationInteractor:
         
         return task
 
-    def done_task(self, task_id: int)-> Task:
+    def done_task(self, task_id: int) -> Task:
         task = self._db.get(task_id)
         if task is None:
             raise Exception("not found")
