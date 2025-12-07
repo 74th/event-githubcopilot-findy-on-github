@@ -13,6 +13,7 @@ class TestRepository(unittest.TestCase):
             id=None,
             text="new task",
             done=False,
+            status="pending",
         ))
 
         tasks = repo.search_unfinished()
