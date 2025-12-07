@@ -13,11 +13,13 @@ class MemDB:
                 "id": 0,
                 "text": "task1",
                 "done": False,
+                "status": "pending",
             },
             {
                 "id": 1,
                 "text": "task2",
                 "done": False,
+                "status": "pending",
             }
         ]
 

@@ -18,6 +18,16 @@ export async function postTask(task: Task): Promise<Task[]> {
     return await res.json();
 }
 
+export async function postTaskStart(task: Task): Promise<void> {
+    const url = `/api/tasks/${task.id}/start`;
+    await fetch(url, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+}
+
 export async function postTaskDone(task: Task): Promise<void> {
     const url = `/api/tasks/${task.id}/done`;
     await fetch(url, {

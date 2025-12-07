@@ -23,6 +23,11 @@ interface TaskCardProps {
 }
 
 const TaskCard = (props: TaskCardProps) => {
+    async function clickStart(): Promise<void> {
+        await api.postTaskStart(props.task);
+        props.reloadTasks();
+    }
+
     async function clickDone(): Promise<void> {
         await api.postTaskDone(props.task);
         props.reloadTasks();
@@ -33,6 +38,11 @@ const TaskCard = (props: TaskCardProps) => {
             <div className="card-body">
                 <h5 className="card-title">{props.task.id}</h5>
                 <p className="card-text">{props.task.text}</p>
+                {props.task.status === "pending" && (
+                    <button className="btn btn-secondary me-2" onClick={clickStart}>
+                        Start
+                    </button>
+                )}
                 <button className="btn btn-primary" onClick={clickDone}>
                     done
                 </button>

@@ -40,6 +40,14 @@ def append_task()-> Task:
     return new_task
 
 
+# タスクを進行中にする
+# PATCH /api/tasks/<タスクのID>/start
+@app.route("/api/tasks/<int:task_id>/start", methods=["PATCH"])
+def start_task(task_id: int):
+    task = op.start_task(task_id)
+    return task
+
+
 # タスクを完了にする
 # PATCH /api/tasks/<タスクのID>/done
 @app.route("/api/tasks/<int:task_id>/done", methods=["PATCH"])
